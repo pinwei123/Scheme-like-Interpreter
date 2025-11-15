@@ -50,7 +50,7 @@ double Stod( string s ){
 
 bool isInteger( string& str) {
     if (str.empty()) {
-        return false;  // ªÅ¦r²Å¦ê¤£¬O¾ã?
+        return false;  // ç©ºå­—ç¬¦ä¸²ä¸æ˜¯æ•´?
     }
 
     std::size_t i = 0;
@@ -668,7 +668,7 @@ void Delnil( vector<token> &tmp){
   }
 }
 
-token gettoken( vector<string> input , int & i , int & j ){ //?n¢XO¡Óo¡±P?_???¡Ñ?????O'(' ???M¡P|?L?a 
+token gettoken( vector<string> input , int & i , int & j ){ //?nÂ°OÂ±oÂ§P?_???Ã—?????O'(' ???MÂ·|?L?a 
 	string s, type, errorline ;
 	bool isstring = false ;
 	token tk ;
@@ -776,12 +776,12 @@ void caclulate ( int sel , int i , int j , int linesize , int & eline , int & ec
 	  } // else
   } // if
   else if ( sel == 2 ) {
-	  if ( startline == line ) { // sexp¶}©l¨º¦æ 
-	    if ( i == line ) { // sexpµ²§ô¨º¦æ 
+	  if ( startline == line ) { // sexpé–‹å§‹é‚£è¡Œ 
+	    if ( i == line ) { // sexpçµæŸé‚£è¡Œ 
 		    eline = 1 ;
 		    ecolumn = j - column ;
 			} // if 
-      else {  // ¶}©l¦P¦æ µ²§ô¤£¦P 
+      else {  // é–‹å§‹åŒè¡Œ çµæŸä¸åŒ 
 	   	  eline = i - line + 1 ;
 		    ecolumn = j ;
 			}	 // else 
@@ -1139,7 +1139,7 @@ bool cond_format( tree *root ) {
 	return true;
 } // cond_format()
 
-tree *define( tree *root, int level, vector<def> &d, bool & exit ) { //defined ¨ç¦¡ 
+tree *define( tree *root, int level, vector<def> &d, bool & exit ) { //defined å‡½å¼ 
   def tmp;
   tmp.symbol = root->str ;
   tmp.bind = new tree();
@@ -1148,7 +1148,7 @@ tree *define( tree *root, int level, vector<def> &d, bool & exit ) { //defined ¨
   
 	root->r = eval( root->r, level+1, d, exit );  
   if ( root->r == NULL ) return NULL;
-  for( int i = 0; i < d.size(); i++ ) {  //§PÂ_¦³µL­«½Æ 
+  for( int i = 0; i < d.size(); i++ ) {  //åˆ¤æ–·æœ‰ç„¡é‡è¤‡ 
     if( tmp.symbol == d[i].symbol ) {
       d.erase(d.begin()+i );
     } // if
@@ -2812,7 +2812,7 @@ bool error( tree *root, int level, vector<def> d, bool & exit ) {
 			  if ( !fuc_arg( root->d->str, num ) ) {
 			    string tmp = root->d->str.substr( 12 ) ;
           tmp.erase( tmp.begin() + tmp.size() -1  );
-			  	cout << "> " << "ERROR (incorrect number of arguments) : " << tmp << endl << endl ; //­n°O±o§ïinput 
+			  	cout << "> " << "ERROR (incorrect number of arguments) : " << tmp << endl << endl ; //è¦è¨˜å¾—æ”¹input 
 			  	return false;
 				} // if
 		  } // else
@@ -2840,7 +2840,7 @@ bool error( tree *root, int level, vector<def> d, bool & exit ) {
 		  if ( !fuc_arg( root->d->str, num ) ) {
 			  string tmp = root->d->str.substr( 12 ) ;
         tmp.erase( tmp.begin() + tmp.size() -1  );
-			  cout << "> " << "ERROR (incorrect number of arguments) : " << tmp << endl << endl ; //­n°O±o§ïinput 
+			  cout << "> " << "ERROR (incorrect number of arguments) : " << tmp << endl << endl ; //è¦è¨˜å¾—æ”¹input 
 		  	return false;
 			} // if
 		} // if
@@ -2918,7 +2918,7 @@ tree *eval( tree *root, int level, vector<def> &d, bool & exit ) {  //
     if ( root == NULL ) return NULL;
     return root;
 	}  // else if
-	else {    // s-exp root«ü¦V"(" 
+	else {    // s-exp rootæŒ‡å‘"(" 
     if ( !error( root, level, d, exit ) ) 
 		  return NULL;
     tree *temp = new tree();
@@ -2945,12 +2945,12 @@ void excute( vector<string> &input ) {
   for( int i = 0; i < input.size() && !end ; i++ ){
     j = 0;
     while ( input[i].size() > j && !end ) { //?P???h??s-exp 
-    	if(Sexp( input, list, i, j, tk )){  // »yªk¨S°İÃD 
+    	if(Sexp( input, list, i, j, tk )){  // èªæ³•æ²’å•é¡Œ 
     		line = i;
         column = j;
         modify( list );
 	      Delnil( list );
-	    	for ( int k = 0 ; k < list.size() ; k++){   //¡±?vector¡Ó???string 
+	    	for ( int k = 0 ; k < list.size() ; k++){   //Â§?vectorÂ±???string 
 	    	  if( k != list.size()-1 )
 	    		  exp = exp + list[k].s + ' ';
 	    	  else
@@ -2967,7 +2967,7 @@ void excute( vector<string> &input ) {
 					else {
 					  exp = change(exp);  
             create( root, exp, index, stop, remain );
-          } //«Ø¾ğ§PÂ_evaluate¤åªk 
+          } //å»ºæ¨¹åˆ¤æ–·evaluateæ–‡æ³• 
 	        temp = eval( root, level, def, end ) ;
 	        if ( temp != NULL ) {
 	        	cout << "> "; 
