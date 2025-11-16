@@ -81,6 +81,3 @@ cp Test_data/input_1.txt test1.txt
 
 ---
 
-## License
-
-MIT License.
